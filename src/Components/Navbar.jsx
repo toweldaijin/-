@@ -6,7 +6,9 @@ const Navbar = ({ isAuth }) => {
   return (
    <nav>
     <Link to="/">ホーム</Link>
-    {!isAuth ? (<Link to="/login">ログイン・会員登録</Link>)
+    {!isAuth 
+    ? 
+    (<Link to="/login">ログイン・会員登録</Link>)
     :
     (<Link to="/logout">ログアウト</Link>)
     }
