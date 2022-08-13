@@ -23,6 +23,8 @@ const CreatingReviewPage = ({ isAuth }) => {
   const[schedule, setSchedule] = useState();
   const[scholarship, setScholarship] = useState();
   const[foundation, setFoundation] = useState();
+  const[tuition, setTuition] = useState();
+  const[costOfLiving, setCostOfLiving] = useState(); 
   const[regret, setRegret] = useState();
   const[importantPoint, setImportantPoint] = useState();
   const[sns, setSns] = useState();
@@ -49,6 +51,8 @@ const CreatingReviewPage = ({ isAuth }) => {
       schedule: schedule,
       scholarship: scholarship,
       foundation: foundation,
+      tuition: tuition,
+      costOfLiving: costOfLiving,
       regret: regret,
       importantPoint: importantPoint,
       sns: sns,
@@ -242,11 +246,19 @@ const CreatingReviewPage = ({ isAuth }) => {
               />
         </div>
 
-        <div className='regret'>
-          <div>出願準備の中で失敗談や後悔していることがあれば教えてください</div>
+        <div className='tuition'>
+          <div>【任意】奨学金適用前の1年の学費を教えてください</div>
+            <textarea
+              type="text"
+              onChange={(e) => setTuition(e.target.value) }
+              />
+        </div>
+
+        <div className='costOfLiving'>
+          <div>【任意】1ヶ月の生活費を教えてください</div>
             <textarea
             type="text"
-            onChange={(e) => setOpposite(e.target.value) }
+            onChange={(e) => setCostOfLiving(e.target.value) }
             />
         </div>
 
