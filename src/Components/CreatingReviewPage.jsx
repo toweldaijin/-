@@ -9,6 +9,7 @@ const CreatingReviewPage = ({ isAuth }) => {
   const[university, setUniversity] = useState();
   const[country, setCountry] = useState();
   const countries = useMemo(() => countryList().getData(), []);
+  const[highschool, setHighschool] = useState();
   const[reason, setReason] = useState();
   const[otherAcceptedUniversity, setotherAcceptedUniversity]  = useState();
   const[testScore, setTestScore] = useState();
@@ -18,14 +19,14 @@ const CreatingReviewPage = ({ isAuth }) => {
   const[gpa, setGpa] = useState();
   const[essay, setEssay] = useState();
   const[opposite, setOpposite] = useState();
+  const[agent, setAgent] = useState();
   const[schedule, setSchedule] = useState();
+  const[scholarship, setScholarship] = useState();
+  const[foundation, setFoundation] = useState();
   const[regret, setRegret] = useState();
   const[importantPoint, setImportantPoint] = useState();
   const[sns, setSns] = useState();
   const[message, setMessage] = useState();
-
-  
-  
 
   
 
@@ -34,6 +35,7 @@ const CreatingReviewPage = ({ isAuth }) => {
       year: year,
       university: university,
       country: country,
+      highschool: highschool,
       reason: setReason,
       otherAcceptedUniversity: otherAcceptedUniversity,
       testScore: testScore,
@@ -43,7 +45,10 @@ const CreatingReviewPage = ({ isAuth }) => {
       gpa: gpa,
       essay: essay,
       opposite: opposite,
+      agent: agent,
       schedule: schedule,
+      scholarship: scholarship,
+      foundation: foundation,
       regret: regret,
       importantPoint: importantPoint,
       sns: sns,
@@ -84,7 +89,7 @@ const CreatingReviewPage = ({ isAuth }) => {
 
         <div className='university'>
           <div>大学名</div>
-            <textarea
+            <input
               type="text"
               onChange={(e) => setUniversity(e.target.value)}
             />
@@ -99,6 +104,23 @@ const CreatingReviewPage = ({ isAuth }) => {
                 </option>
               ))}
             </select>
+        </div>
+
+        <div className='highschool'>
+          <div>出身高校</div>
+          <select
+              onChange={(e) => setHighschool(e.target.value)}
+          >
+            <option>首都圏私立</option>
+            <option>首都圏公立</option>
+            <option>地方私立</option>
+            <option>地方公立</option>
+            <option>国内インターナショナルスクール</option>
+            <option>海外</option>
+            <option>通信制</option>
+            <option>大卒検定</option>
+            <option>その他</option>
+          </select>
         </div>
         
         <div className='reason'>
@@ -167,12 +189,56 @@ const CreatingReviewPage = ({ isAuth }) => {
               />
         </div>
 
+        <div className='agent'>
+          <div>留学エージェントや留学専門塾は利用しましたか？</div>
+              <input
+                type="radio"
+                onChange={(e) => setAgent(e.target.value)}
+                name="agent"
+                value="yes"
+              />
+                はい
+              <input 
+                type="radio"
+                onChange={(e) => setAgent(e.target.value)}
+                name="agent"
+                value="no"
+              />
+                いいえ
+        </div>
+
         <div className='schedule'>
           <div>出願までのスケジュールを教えてください</div>
             <textarea
               type="text"
               onChange={(e) => setOpposite(e.target.value) }
               helperText="(例)高3の4月~7月スコアメイク 6月～10月エッセイ執筆 10月推薦書依頼" 
+              />
+        </div>
+
+        <div className='scholarship'>
+          <div>給付型の奨学金は受給しましたか？</div>
+            <input
+                  type="radio"
+                  onChange={(e) => setScholarship(e.target.value)}
+                  name="scholarship"
+                  value="yes"
+                />
+                  はい
+                <input 
+                  type="radio"
+                  onChange={(e) => setScholarship(e.target.value)}
+                  name="scholarship"
+                  value="no"
+                />
+                  いいえ
+        </div>
+        
+        <div className='foundation'>
+          <div>【任意】奨学金の金額や給付元(大学からや財団からなど)</div>
+            <textarea
+              type="text"
+              onChange={(e) => setFoundation(e.target.value) }
               />
         </div>
 
