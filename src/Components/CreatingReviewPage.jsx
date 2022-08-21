@@ -1,8 +1,11 @@
 import React from 'react'
 import { useState, useMemo } from 'react'
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import countryList from 'react-select-country-list';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const CreatingReviewPage = ({ isAuth }) => {
   const[year, setYear] = useState();
@@ -11,7 +14,7 @@ const CreatingReviewPage = ({ isAuth }) => {
   const countries = useMemo(() => countryList().getData(), []);
   const[highschool, setHighschool] = useState();
   const[reason, setReason] = useState();
-  const[otherAcceptedUniversity, setotherAcceptedUniversity]  = useState();
+  const[otherAcceptedUniversity, setOtherAcceptedUniversity]  = useState();
   const[testScore, setTestScore] = useState();
   const[howToGetTestScore, setHowToGetTestScore] = useState();
   const[englishScore, setEnglishScore] = useState();
@@ -30,7 +33,7 @@ const CreatingReviewPage = ({ isAuth }) => {
   const[sns, setSns] = useState();
   const[message, setMessage] = useState();
 
-  
+  const navigate = useNavigate();
 
   const createPost = async() => {
     await addDoc(collection(db, "posts"), {
@@ -38,7 +41,7 @@ const CreatingReviewPage = ({ isAuth }) => {
       university: university,
       country: country,
       highschool: highschool,
-      reason: setReason,
+      reason: reason,
       otherAcceptedUniversity: otherAcceptedUniversity,
       testScore: testScore,
       howToGetTestScore: howToGetTestScore,
@@ -57,8 +60,13 @@ const CreatingReviewPage = ({ isAuth }) => {
       importantPoint: importantPoint,
       sns: sns,
       message: message,
-    })
-  }
+      author: {
+        id: auth.currentUser.uid,
+      },
+    });
+
+    navigate("/");
+  };
 
   return (
     <>
@@ -67,7 +75,6 @@ const CreatingReviewPage = ({ isAuth }) => {
       (<div className='PleaseLogin'>ログインしてください</div>)
       :
       (
-      
       <div className='createReviewPage'>
 
         <h1>体験記を投稿する</h1>
@@ -75,9 +82,9 @@ const CreatingReviewPage = ({ isAuth }) => {
         <div className='year'>
           <div>受験年度</div>
             <select
-                label="Select"
                 onChange={(e) => setYear(e.target.value)}
             >
+              <option>選択してください</option>
               <option>2012年以前</option>
               <option>2013年</option>
               <option>2014年</option>
@@ -91,17 +98,20 @@ const CreatingReviewPage = ({ isAuth }) => {
             </select>
         </div>
 
-        <div className='university'>
+      <div className='university'>
           <div>大学名</div>
             <input
               type="text"
               onChange={(e) => setUniversity(e.target.value)}
             />
-        </div>
+        </div> 
 
         <div className='country'>
           <div >大学のある国</div>
-            <select>
+            <select
+              onChange={(e) => setCountry(e.target.value)}
+            >
+              <option>選択してください</option>
               {countries.map((option) => (
                 <option >
                   {option.label}
@@ -115,6 +125,7 @@ const CreatingReviewPage = ({ isAuth }) => {
           <select
               onChange={(e) => setHighschool(e.target.value)}
           >
+            <option>選択してください</option>
             <option>首都圏私立</option>
             <option>首都圏公立</option>
             <option>地方私立</option>
@@ -139,7 +150,7 @@ const CreatingReviewPage = ({ isAuth }) => {
           <div>他の合格校を教えてください</div>
             <textarea
               type="text"
-              onChange={(e) => setReason(e.target.value)} 
+              onChange={(e) => setOtherAcceptedUniversity(e.target.value)} 
             />
         </div>
 
@@ -215,7 +226,7 @@ const CreatingReviewPage = ({ isAuth }) => {
           <div>出願までのスケジュールを教えてください</div>
             <textarea
               type="text"
-              onChange={(e) => setOpposite(e.target.value) }
+              onChange={(e) => setSchedule(e.target.value) }
               helperText="(例)高3の4月~7月スコアメイク 6月～10月エッセイ執筆 10月推薦書依頼" 
               />
         </div>
@@ -267,6 +278,14 @@ const CreatingReviewPage = ({ isAuth }) => {
             <textarea
               type="text"
               onChange={(e) => setImportantPoint(e.target.value)}
+            />
+        </div>
+
+        <div className='regret'>
+          <div>出願を進める中で後悔していることがあれば教えてください</div>
+            <textarea
+              type="text"
+              onChange={(e) => setRegret(e.target.value)}
             />
         </div>
 

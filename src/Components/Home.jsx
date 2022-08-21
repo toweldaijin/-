@@ -6,6 +6,7 @@ import { SearchByUniversity } from "./SearchByUniversity.jsx";
 
 export const Home = () => {
 
+    
   return(
     <>
       

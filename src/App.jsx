@@ -7,9 +7,14 @@ import Login from './Components/Login';
 import Logout from './Components/Logout';
 import CreatingReviewPage from './Components/CreatingReviewPage';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from './firebase';
+import ReviewList from './Components/ReviewList';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  
 
   return(
     <>
@@ -21,6 +26,7 @@ function App() {
           <Route path="/logout" element={<Logout setIsAuth={setIsAuth}/>}></Route>
           <Route path="/creatingReviewPage" element={<CreatingReviewPage isAuth={isAuth}/>}></Route> 
         </Routes>
+        <ReviewList></ReviewList>
       </Router>
     </>
   );
