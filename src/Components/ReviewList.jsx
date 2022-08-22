@@ -71,9 +71,9 @@ const ReviewList = () => {
                                 <p>{post.sns}</p>
                             <h4>最後に一言</h4>
                                 <p>{post.message}</p>
-                            {post.author.id === auth.currentUser.uid && ( 
-                                <button onClick={() => handleDelete(post.id)}>削除</button>
-                             )}  
+                            {/* {post.author.id === auth.currentUser.uid && (  */}
+                                {/* <button onClick={() => handleDelete(post.id)}>削除</button> */}
+                           {/*  )} */}  
                     </div>    
                 )
             }

@@ -35,8 +35,11 @@ const CreatingReviewPage = ({ isAuth }) => {
 
   const navigate = useNavigate();
 
-  const createPost = async() => {
+  const createPost = async () => {
     await addDoc(collection(db, "posts"), {
+      author: {
+        id: auth.currentUser.uid,
+      },
       year: year,
       university: university,
       country: country,
@@ -60,9 +63,7 @@ const CreatingReviewPage = ({ isAuth }) => {
       importantPoint: importantPoint,
       sns: sns,
       message: message,
-      author: {
-        id: auth.currentUser.uid,
-      },
+      
     });
 
     navigate("/");
