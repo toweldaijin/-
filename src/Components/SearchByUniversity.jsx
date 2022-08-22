@@ -37,6 +37,7 @@ export const SearchByUniversity = () => {
                 }}
             >
         <p>大学名で検索</p>
+        <p>正式名称で入力してください　例）UCLA → University of California, Los Angels</p>
         <form onSubmit={(event) => handleSubmitByUniversity(event)}>
             <input type="text" placeholder="大学名を入力" ref={ref}></input>
         </form>

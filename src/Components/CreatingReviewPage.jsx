@@ -113,8 +113,8 @@ const CreatingReviewPage = ({ isAuth }) => {
               onChange={(e) => setCountry(e.target.value)}
             >
               <option>選択してください</option>
-              {countries.map((option) => (
-                <option >
+              {countries.map((option, index) => (
+                <option key={index}>
                   {option.label}
                 </option>
               ))}
@@ -224,11 +224,12 @@ const CreatingReviewPage = ({ isAuth }) => {
         </div>
 
         <div className='schedule'>
-          <div>出願までのスケジュールを教えてください</div>
+          <div>出願までのスケジュールを教えてください 
+              (例)高3の4月~7月:スコアメイク 6月～10月:エッセイ執筆 10月:推薦書依頼
+          </div>
             <textarea
               type="text"
               onChange={(e) => setSchedule(e.target.value) }
-              helperText="(例)高3の4月~7月スコアメイク 6月～10月エッセイ執筆 10月推薦書依頼" 
               />
         </div>
 

@@ -38,20 +38,17 @@ export const SearchByCountry = () => {
                         }}
             >
                 <p>国で検索</p>
-                {/* <form onSubmit={(event) => handleSubmitByCountry(event)}> */}
                 <select
                     onChange={(e) => handleSubmitByCountry(e)}
+                    ref={ref}
                 >
-              <option>選択してください</option>
-              {countries.map((option) => (
-                <option >
-                  {option.label}
-                </option>
-              ))}
-            </select>
-                {/* <input type="text" placeholder="国名を入力" ref={ref}></input> */}
-               
-
+                        <option>選択してください</option>
+                    {countries.map((option, index) => (
+                        <option key={index}> 
+                    {option.label}
+                    </option>
+                    ))}
+                </select>
                 <ListByCountry fetchDataByCountry={fetchDataByCountry}></ListByCountry>
             </div>
         </>

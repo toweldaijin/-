@@ -7,7 +7,7 @@ import { async } from '@firebase/util';
 import { doc } from 'firebase/firestore';
 
 const ReviewList = () => {
-    const [postList, setPostList] = useState([]);
+    const [postList, setPostList] = useState([]); 
 
     useEffect(() => {
         const getPosts = async ()=> {

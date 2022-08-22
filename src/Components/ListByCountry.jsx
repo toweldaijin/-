@@ -7,13 +7,13 @@ const ListByCountry = ({fetchDataByCountry}) => {
     
     <div>
         <div className='unversity-wrapper'>
-              {fetchDataByCountry.map((data) => (
-               <>
-                  <div className="universty-name">
+              {fetchDataByCountry.map((data, index) => (
+               
+                  <div className="universty-name" key={index}>
                     {data.name}
                   </div>
                   
-                  </>
+                  
                
               ))}
             

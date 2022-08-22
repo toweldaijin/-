@@ -14,7 +14,6 @@ import ReviewList from './Components/ReviewList';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-  
 
   return(
     <>
@@ -26,7 +25,9 @@ function App() {
           <Route path="/logout" element={<Logout setIsAuth={setIsAuth}/>}></Route>
           <Route path="/creatingReviewPage" element={<CreatingReviewPage isAuth={isAuth}/>}></Route> 
         </Routes>
-        <ReviewList></ReviewList>
+        {/* { post.country === */}
+          <ReviewList ></ReviewList>
+       {/*  } */}
       </Router>
     </>
   );
