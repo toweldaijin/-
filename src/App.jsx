@@ -13,7 +13,7 @@ import { db } from './firebase';
 import ReviewList from './Components/ReviewList';
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
   return(
     <>

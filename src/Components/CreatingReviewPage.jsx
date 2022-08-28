@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import countryList from 'react-select-country-list';
@@ -34,7 +34,8 @@ const CreatingReviewPage = ({ isAuth }) => {
   const[message, setMessage] = useState();
 
   const navigate = useNavigate();
-
+  
+  
   const createPost = async () => {
     await addDoc(collection(db, "posts"), {
       author: {
@@ -67,8 +68,8 @@ const CreatingReviewPage = ({ isAuth }) => {
     });
 
     navigate("/");
-  };
-
+  }
+  
   return (
     <>
     {!isAuth 
@@ -101,10 +102,13 @@ const CreatingReviewPage = ({ isAuth }) => {
 
       <div className='university'>
           <div>大学名</div>
-            <input
-              type="text"
-              onChange={(e) => setUniversity(e.target.value)}
-            />
+            <select
+            onChange={(e) => setUniversity(e.target.value)}
+            >
+              <option>選択してください</option>
+              
+            </select>
+
         </div> 
 
         <div className='country'>
