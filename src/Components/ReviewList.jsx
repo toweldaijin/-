@@ -6,7 +6,7 @@ import { auth, db } from '../firebase';
 import { async } from '@firebase/util';
 import { doc } from 'firebase/firestore';
 
-const ReviewList = () => {
+const ReviewList = ( selectedCountry ) => {
     const [postList, setPostList] = useState([]); 
 
     useEffect(() => {
@@ -15,7 +15,10 @@ const ReviewList = () => {
         setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
         getPosts(); 
+        
     }, []);
+
+    console.log(postList)
 
     /* const handleDelete = async (id) => {
         await deleteDoc(doc(db, "posts", id));
@@ -27,6 +30,8 @@ const ReviewList = () => {
         {
             <div className="reviews">
                 {postList.map((post) => 
+                    post.country === selectedCountry
+                    &&
                     <div className="reviewContents" key={post.id}>
                         <h4>受験年度</h4>
                             <p>{post.year}</p>

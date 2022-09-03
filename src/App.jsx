@@ -25,9 +25,9 @@ function App() {
           <Route path="/logout" element={<Logout setIsAuth={setIsAuth}/>}></Route>
           <Route path="/creatingReviewPage" element={<CreatingReviewPage isAuth={isAuth}/>}></Route> 
         </Routes>
-        {/* { post.country === */}
-          <ReviewList ></ReviewList>
-       {/*  } */}
+       
+          
+       
       </Router>
     </>
   );

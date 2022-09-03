@@ -5,8 +5,7 @@ import { auth, db } from "../firebase";
 import countryList from 'react-select-country-list';
 import { useNavigate } from 'react-router-dom';
 
-
-
+/* 各項目の変数 */
 const CreatingReviewPage = ({ isAuth }) => {
   const[year, setYear] = useState();
   const[university, setUniversity] = useState();
@@ -34,8 +33,34 @@ const CreatingReviewPage = ({ isAuth }) => {
   const[message, setMessage] = useState();
 
   const navigate = useNavigate();
+  const ref = useRef();
+  const [fetchDataByCountry, setFetchDataByCountry] = useState([]);
+
+const handleSubmitByCountry = (event) => {
+  event.preventDefault();
+  console.log(ref.current.value);
+  setCountry(ref.current.value);
+ 
+
+  /* APIのURL */
+  const endpointUrlByCountry = `http://universities.hipolabs.com/search?country=${ref.current.value}` 
+
+  /* APIを叩く */
+  fetch(endpointUrlByCountry)
+      .then((res) => {
+      return res.json();
+      })
+      .then((data) => {
+      console.log(data);
+      setFetchDataByCountry(data);
+      })
+
+      
+  }  
+
+
   
-  
+  /* Firestoreに格納 */
   const createPost = async () => {
     await addDoc(collection(db, "posts"), {
       author: {
@@ -100,30 +125,35 @@ const CreatingReviewPage = ({ isAuth }) => {
             </select>
         </div>
 
-      <div className='university'>
-          <div>大学名</div>
-            <select
-            onChange={(e) => setUniversity(e.target.value)}
-            >
-              <option>選択してください</option>
-              
-            </select>
-
-        </div> 
-
         <div className='country'>
-          <div >大学のある国</div>
+          <div>大学のある国</div>
             <select
-              onChange={(e) => setCountry(e.target.value)}
+              onChange={(e) => handleSubmitByCountry(e)}
+              ref={ref}
             >
               <option>選択してください</option>
               {countries.map((option, index) => (
-                <option key={index}>
+                <option key={index}> 
                   {option.label}
                 </option>
               ))}
             </select>
         </div>
+
+        <div className='university'>
+          <div>大学名</div>
+            <select
+            onChange={(e) => setUniversity(e.target.value)}
+            >
+              <option>選択してください</option>
+              {fetchDataByCountry.map((data, index)=>(
+                <option key={index}>{data.name}</option>
+              ))}
+              
+             
+            </select>
+
+        </div> 
 
         <div className='highschool'>
           <div>出身高校</div>
