@@ -41,7 +41,6 @@ const handleSubmitByCountry = (event) => {
   console.log(ref.current.value);
   setCountry(ref.current.value);
  
-
   /* APIのURL */
   const endpointUrlByCountry = `http://universities.hipolabs.com/search?country=${ref.current.value}` 
 
@@ -149,8 +148,6 @@ const handleSubmitByCountry = (event) => {
               {fetchDataByCountry.map((data, index)=>(
                 <option key={index}>{data.name}</option>
               ))}
-              
-             
             </select>
 
         </div> 

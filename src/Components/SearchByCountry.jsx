@@ -63,7 +63,7 @@ export const SearchByCountry = () => {
                         color:"white"
                         }}
             >
-                <p>国で検索</p>
+                <h2>国で検索</h2>
                 <select
                     onChange={(e) => handleSubmitByCountry(e)}
                     ref={ref}
