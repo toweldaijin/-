@@ -1,13 +1,11 @@
 import React, { useRef, useState, useMemo } from "react";
-import ListByCountry from "./ListByCountry";
 import countryList from 'react-select-country-list';
-import { useEffect } from 'react';
 import { collection, connectFirestoreEmulator, deleteDoc, getDocs, getFirestore, query, where } from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import { db } from '../firebase';
 import { async } from '@firebase/util';
 import { doc } from 'firebase/firestore';
 import ReviewList from "./ReviewList";
-import { isCompositeComponent } from "react-dom/test-utils";
+
 
 export const SearchByCountry = () => {
 
