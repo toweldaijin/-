@@ -7,56 +7,55 @@ import { auth, db } from '../firebase';
 import { async } from '@firebase/util';
 import { doc } from 'firebase/firestore';
 import ReviewList from "./ReviewList";
+import { isCompositeComponent } from "react-dom/test-utils";
 
 export const SearchByCountry = () => {
 
     const [fetchDataByCountry, setFetchDataByCountry] = useState([]);
     const ref = useRef();
     const countries = useMemo(() => countryList().getData(), []);
-    const citiesRef = collection(db, "posts");
-    const q = query(citiesRef, where("country", "==", "Algeria"));
 
     /* Firestoreからデータを取ってくる */
     const [postList, setPostList] = useState([]); 
 
-    useEffect(() => {
+   /*  useEffect(() => {
         const getPosts = async ()=> {
         const data = await getDocs(collection(db, "posts"));
         setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
         getPosts(); 
-    }, []);
+    }, []);  */
 
-    const postCountries = postList.map((post, index) => post.country)
-
+    
     /* inputに文字入力後、エンターしたとき */
     const handleSubmitByCountry = async(event) => {
         event.preventDefault();
         console.log(ref.current.value);
 
-    /* APIのURL */
-    const endpointUrlByCountry = `http://universities.hipolabs.com/search?country=${ref.current.value}` 
+        /* APIのURL */
+        const endpointUrlByCountry = `http://universities.hipolabs.com/search?country=${ref.current.value}` 
 
-    /* APIを叩く */
-    fetch(endpointUrlByCountry)
-            .then((res) => {
-            return res.json();
-            })
-            .then((data) => {
-            console.log(data);
-            setFetchDataByCountry(data);
-    })
+        /* APIを叩く */
+        fetch(endpointUrlByCountry)
+                .then((res) => {
+                return res.json();
+                })
+                .then((data) => {
+                console.log(data);
+                setFetchDataByCountry(data);
+        })
 
-    
-    const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
+        /* 国名でPostsをフィルタリング */
+        const countriesRef = collection(db, "posts");
+        const q = query(countriesRef, where("country", "==", ref.current.value));
         
-    });
-            
+        const querySnapshot = await getDocs(q);
+        setPostList(querySnapshot.docs.map((doc) => ({
+            ...doc.data(), id: doc.id
+        })));
+        
     }  
-
+    console.log(postList)
     return(
         <>
             <div 
@@ -79,13 +78,9 @@ export const SearchByCountry = () => {
                     ))}
                 </select>
             </div>
-
-         
-           
+            <ReviewList postList={postList}></ReviewList>
             {/* <ListByCountry fetchDataByCountry={fetchDataByCountry}></ListByCountry> */}
            
-               
-               
         </>
     )
 }
