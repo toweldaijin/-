@@ -42,7 +42,7 @@ const handleSubmitByCountry = (event) => {
   setCountry(ref.current.value);
  
   /* APIのURL */
-  const endpointUrlByCountry = `/universities.hipolabs.com/search?country=${ref.current.value}` 
+  const endpointUrlByCountry = `https://universities.hipolabs.com/search?country=${ref.current.value}` 
 
   /* APIを叩く */
   fetch(endpointUrlByCountry)
