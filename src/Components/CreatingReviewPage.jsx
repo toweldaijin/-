@@ -32,17 +32,17 @@ const CreatingReviewPage = ({ isAuth }) => {
   const[sns, setSns] = useState();
   const[message, setMessage] = useState();
 
+
   const navigate = useNavigate();
   const ref = useRef();
   const [fetchDataByCountry, setFetchDataByCountry] = useState([]);
 
 const handleSubmitByCountry = (event) => {
   event.preventDefault();
-  console.log(ref.current.value);
   setCountry(ref.current.value);
  
   /* APIのURL */
-  const endpointUrlByCountry = `http://universities.hipolabs.com/search?country=${ref.current.value}` 
+  const endpointUrlByCountry = `/universities.hipolabs.com/search?country=${ref.current.value}` 
 
   /* APIを叩く */
   fetch(endpointUrlByCountry)
@@ -53,11 +53,9 @@ const handleSubmitByCountry = (event) => {
       console.log(data);
       setFetchDataByCountry(data);
       })
-
-      
   }  
 
-
+ 
   
   /* Firestoreに格納 */
   const createPost = async () => {
@@ -168,6 +166,7 @@ const handleSubmitByCountry = (event) => {
             <option>大卒検定</option>
             <option>その他</option>
           </select>
+         
         </div>
         
         <div className='reason'>
@@ -283,15 +282,16 @@ const handleSubmitByCountry = (event) => {
         </div>
         
         <div className='foundation'>
-          <div>【任意】奨学金の金額や給付元(大学からや財団からなど)</div>
+          <div>【任意】奨学金の金額や給付元(大学からや財団からなど) 未回答の場合は、未回答と記載してください</div>
             <textarea
               type="text"
-              onChange={(e) => setFoundation(e.target.value) }
+                onChange={(e) => setFoundation(e.target.value)}
+                
               />
         </div>
 
         <div className='tuition'>
-          <div>【任意】奨学金適用前の1年の学費を教えてください</div>
+          <div>【任意】奨学金適用前の1年の学費を教えてください　未回答の場合は、未回答と記載してください</div>
             <textarea
               type="text"
               onChange={(e) => setTuition(e.target.value) }
@@ -299,7 +299,7 @@ const handleSubmitByCountry = (event) => {
         </div>
 
         <div className='costOfLiving'>
-          <div>【任意】1ヶ月の生活費を教えてください</div>
+          <div>【任意】1ヶ月の生活費を教えてください　未回答の場合は、未回答と記載してください</div>
             <textarea
             type="text"
             onChange={(e) => setCostOfLiving(e.target.value) }
