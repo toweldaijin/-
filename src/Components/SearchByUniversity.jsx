@@ -24,7 +24,7 @@ export const SearchByUniversity = () => {
     console.log(refCountry.current.value);
 
     /* APIのURL */
-    const endpointUrlByUniversity = `http://universities.hipolabs.com/search?country=${refCountry.current.value}`
+    const endpointUrlByUniversity = `https://universities.hipolabs.com/search?country=${refCountry.current.value}`
 
     /* APIを叩く */
     fetch(endpointUrlByUniversity)

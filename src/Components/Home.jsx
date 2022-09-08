@@ -20,7 +20,7 @@ export const Home = () => {
       </div>
 
       <SearchByCountry></SearchByCountry>
-      <SearchByUniversity></SearchByUniversity>
+     {/*  <SearchByUniversity></SearchByUniversity> */}
 
       
     </>

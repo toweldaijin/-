@@ -37,23 +37,24 @@ const CreatingReviewPage = ({ isAuth }) => {
   const ref = useRef();
   const [fetchDataByCountry, setFetchDataByCountry] = useState([]);
 
-const handleSubmitByCountry = (event) => {
+/* const handleSubmitByCountry = (event) => {
   event.preventDefault();
   setCountry(ref.current.value);
- 
+  */
   /* APIのURL */
-  const endpointUrlByCountry = `https://universities.hipolabs.com/search?country=${ref.current.value}` 
-
+ /*  const endpointUrlByCountry = `https://universities.hipolabs.com/search?country=${ref.current.value}` 
+ */
   /* APIを叩く */
-  fetch(endpointUrlByCountry)
+  /* fetch(endpointUrlByCountry)
       .then((res) => {
       return res.json();
       })
       .then((data) => {
       console.log(data);
       setFetchDataByCountry(data);
-      })
-  }  
+      }) 
+    }*/
+  
 
  
   
@@ -125,7 +126,7 @@ const handleSubmitByCountry = (event) => {
         <div className='country'>
           <div>大学のある国</div>
             <select
-              onChange={(e) => handleSubmitByCountry(e)}
+              onChange={(e) => setCountry(e.target.value)}
               ref={ref}
             >
               <option>選択してください</option>
@@ -139,14 +140,18 @@ const handleSubmitByCountry = (event) => {
 
         <div className='university'>
           <div>大学名</div>
-            <select
+              <input
+                onChange={(e) => setUniversity(e.target.value)}
+                ref={ref}
+              ></input>
+            {/* <select
             onChange={(e) => setUniversity(e.target.value)}
             >
               <option>選択してください</option>
               {fetchDataByCountry.map((data, index)=>(
                 <option key={index}>{data.name}</option>
               ))}
-            </select>
+            </select> */}
 
         </div> 
 
