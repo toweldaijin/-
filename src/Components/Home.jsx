@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import HomeImageUrl from './HomeImageUrl.png';
 import { SearchByCountry } from "./SearchByCountry";
-import { SearchByUniversity } from "./SearchByUniversity.jsx";
+import "./Home.css";
 
 
 export const Home = () => {

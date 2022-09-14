@@ -4,6 +4,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import countryList from 'react-select-country-list';
 import { useNavigate } from 'react-router-dom';
+import './CreatingReviewPage.css';
 
 /* 各項目の変数 */
 const CreatingReviewPage = ({ isAuth }) => {
@@ -176,9 +177,10 @@ const CreatingReviewPage = ({ isAuth }) => {
         
         <div className='reason'>
           <div>留学理由・きっかけについて教えてください</div>
-            <textarea
+            <textarea 
               type="text"
               onChange={(e) => setReason(e.target.value)}
+              rows="4" cols="50"
             />
         </div>
 
@@ -200,6 +202,7 @@ const CreatingReviewPage = ({ isAuth }) => {
             <textarea 
               type="text"
               onChange={(e) => setHowToGetTestScore(e.target.value)}
+              rows="4" cols="50"
             />
         </div>
        
@@ -229,6 +232,7 @@ const CreatingReviewPage = ({ isAuth }) => {
               <textarea
                 type="text"
                 onChange={(e) => setEssay(e.target.value)}
+                rows="4" cols="50"
               />
         </div>
 
@@ -237,6 +241,7 @@ const CreatingReviewPage = ({ isAuth }) => {
               <textarea
                 type="text"
                 onChange={(e) => setOpposite(e.target.value)}
+                rows="4" cols="50"
               />
         </div>
 
@@ -265,6 +270,7 @@ const CreatingReviewPage = ({ isAuth }) => {
             <textarea
               type="text"
               onChange={(e) => setSchedule(e.target.value) }
+              rows="4" cols="50"
               />
         </div>
 
@@ -316,6 +322,7 @@ const CreatingReviewPage = ({ isAuth }) => {
             <textarea
               type="text"
               onChange={(e) => setImportantPoint(e.target.value)}
+              rows="4" cols="50"
             />
         </div>
 
@@ -324,6 +331,7 @@ const CreatingReviewPage = ({ isAuth }) => {
             <textarea
               type="text"
               onChange={(e) => setRegret(e.target.value)}
+              rows="4" cols="50"
             />
         </div>
 
@@ -340,6 +348,7 @@ const CreatingReviewPage = ({ isAuth }) => {
             <textarea 
               type="text"
               onChange={(e) => setMessage(e.target.value)}
+              rows="4" cols="50"
             />
         </div>
 

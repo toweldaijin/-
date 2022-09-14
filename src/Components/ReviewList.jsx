@@ -5,6 +5,8 @@ import { collection, deleteDoc, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { async } from '@firebase/util';
 import { doc } from 'firebase/firestore';
+import "./ReviewList.css";
+
 
 const ReviewList = ( {postList} ) => {
    
